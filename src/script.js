@@ -8,31 +8,32 @@ var stageCount = 0;
 // functions
 // get the first number function
 var showData = function (valueOfBtn) {
-    if (firstNum) {
-        showResultBox.textContent = "";
-        var secondNum = valueOfBtn;
-        showResultBox.textContent = "".concat(secondNum);
-        console.log("this is second num: ", secondNum);
+    if (showResultBox.textContent === "0") {
+        showResultBox.textContent = valueOfBtn;
+        if (stageCount == 1) {
+            var secondNum = showResultBox.textContent;
+            secondNumFunc(secondNum);
+        }
     }
     else {
-        if (showResultBox.textContent === "0") {
-            showResultBox.textContent = valueOfBtn;
-        }
-        else {
-            showResultBox.textContent += valueOfBtn;
-        }
+        showResultBox.textContent += valueOfBtn;
     }
 };
 // start oprating functions
 var startOprating = function (opratorVal) {
+    stageCount++;
     var firstNum = showResultBox.textContent;
     showResultBox.textContent = "".concat(opratorVal);
-    console.log("this is our first num: ", firstNum);
     opratorVal = opratorVal;
     console.log(opratorVal);
+    console.log("this is our first num: ", firstNum);
+    console.log("this is our Operator: ", opratorVal);
+    console.log("this is stageC :", stageCount);
 };
 // second number function
-var secondNumFunc = function () { };
+var secondNumFunc = function (secondNum) {
+    console.log(secondNum);
+};
 var showResult = function (firstNum, opratorVal, secondNum) {
     if (opratorVal === "-") {
         console.log(firstNum - secondNum);

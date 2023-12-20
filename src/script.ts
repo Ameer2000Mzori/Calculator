@@ -6,36 +6,39 @@ const resultBtn = document.getElementsByClassName("result-Btn")[0];
 
 // gelobal varibales
 
-const stageCount = 0;
+let stageCount = 0;
 // functions
 
 // get the first number function
 const showData = (valueOfBtn) => {
-  if (firstNum) {
-    showResultBox.textContent = ``;
-    let secondNum = valueOfBtn;
-    showResultBox.textContent = `${secondNum}`;
-    console.log("this is second num: ", secondNum);
-  } else {
-    if (showResultBox.textContent === "0") {
-      showResultBox.textContent = valueOfBtn;
-    } else {
-      showResultBox.textContent += valueOfBtn;
+  if (showResultBox.textContent === "0") {
+    showResultBox.textContent = valueOfBtn;
+    if (stageCount == 1) {
+      let secondNum = showResultBox.textContent;
+      secondNumFunc(secondNum);
     }
+  } else {
+    showResultBox.textContent += valueOfBtn;
   }
 };
 
 // start oprating functions
 const startOprating = (opratorVal) => {
+  stageCount++;
   let firstNum = showResultBox.textContent;
   showResultBox.textContent = `${opratorVal}`;
-  console.log("this is our first num: ", firstNum);
+
   opratorVal = opratorVal;
   console.log(opratorVal);
+  console.log("this is our first num: ", firstNum);
+  console.log("this is our Operator: ", opratorVal);
+  console.log("this is stageC :", stageCount);
 };
 
 // second number function
-const secondNumFunc = () => {};
+const secondNumFunc = (secondNum) => {
+  console.log(secondNum);
+};
 
 const showResult = (firstNum, opratorVal, secondNum) => {
   if (opratorVal === "-") {
