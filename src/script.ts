@@ -1,1 +1,8 @@
-console.log("hallo world");
+// selecting elements
+const numberBtns = document.querySelectorAll("number-Btn");
+
+// gelobal varibales
+
+// functions
+
+// event lisnters
