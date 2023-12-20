@@ -24,27 +24,36 @@ body {
     .result-Wrap {
       display: flex;
       width: 100%;
-      height: 20%;
-      text-align: end;
+      height: 15%;
+      text-align: center;
       align-items: end;
-      justify-content: end;
+      justify-content: flex-end;
+      flex-direction: row;
       background-color: black;
       color: white;
+      border-radius: 1rem 1rem 0 0;
     }
 
     .buttons-Wrap {
       display: flex;
       flex-direction: column;
-      background-color: snow;
+      text-align: center;
+      align-items: center;
+      justify-content: space-evenly;
+      border-radius: 0 0 1rem 1rem;
+      background-color: rgb(231, 236, 235);
       width: 100%;
+      height: 90%;
 
       .buttons-Groups {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: row;
         text-align: center;
         align-items: center;
         justify-content: space-evenly;
+        background-color: #200e3a;
+        border-radius: 1rem;
 
         button {
           width: 40px;
