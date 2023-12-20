@@ -4,3 +4,73 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.main {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.main .calculator-Wrap {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+}
+
+.main .calculator-Wrap .result-Wrap {
+  display: flex;
+  width: 100%;
+  height: 20%;
+  text-align: end;
+  align-items: end;
+  justify-content: end;
+  background-color: black;
+  color: white;
+}
+
+.main .calculator-Wrap .buttons-Wrap {
+  display: flex;
+  flex-direction: column;
+  background-color: snow;
+  width: 100%;
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups button {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 252, 252);
+  border: solid rgb(192, 191, 191) 2px;
+  transition: 100ms ease-in-out;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups button:active {
+  transform: scale(0.9);
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups .result-Btn {
+  background-color: rgb(123, 255, 123);
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups .clear-Btn {
+  background-color: rgb(252, 95, 95);
+}
