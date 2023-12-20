@@ -34,6 +34,11 @@ body {
   border-radius: 1rem 1rem 0 0;
 }
 
+.main .calculator-Wrap .result-Wrap .result-wrapper {
+  width: 25%;
+  height: 100%;
+}
+
 .main .calculator-Wrap .buttons-Wrap {
   display: flex;
   flex-direction: column;
