@@ -11,58 +11,53 @@ var opratorVal;
 // functions
 // get the first number function
 var showData = function (valueOfBtn) {
-    if (stageCount === 1) {
+    if (stageCount === 0)
         if (showResultBox.textContent === "0") {
             showResultBox.textContent = valueOfBtn;
         }
         else {
             showResultBox.textContent += valueOfBtn;
         }
-    }
     else {
         if (showResultBox.textContent === "0") {
             showResultBox.textContent = valueOfBtn;
         }
         else {
             showResultBox.textContent += valueOfBtn;
-            secondNum = showResultBox.textContent;
         }
     }
 };
 // start oprating functions
-var startOprating = function (opratorVal) {
-    stageCount++;
+var storeOprator = function (opratorVal) {
     firstNum = showResultBox.textContent;
-    showResultBox.textContent = "".concat(opratorVal);
     opratorVal = opratorVal;
-    console.log(opratorVal);
-    console.log("this is our first num: ", firstNum);
-    console.log("this is our Operator: ", opratorVal);
-    console.log("this is stageC :", stageCount);
-    showResultBox.textContent = "";
+    console.log(firstNum, opratorVal);
+    showResultBox.textContent = "0";
+    stageCount++;
+};
+// start second number store functions
+var secondNun = function () {
+    secondNum = showResultBox.textContent;
+    console.log(firstNum, opratorVal, secondNum);
+    showResult(firstNum, opratorVal, secondNum);
 };
 var showResult = function (firstNum, opratorVal, secondNum) {
-    if (firstNum && opratorVal && secondNum)
-        if (opratorVal === "-") {
-            console.log(firstNum - secondNum);
-        }
-        else if (opratorVal === "+") {
-            console.log(firstNum + secondNum);
-        }
-        else if (opratorVal === "*") {
-            console.log(firstNum * secondNum);
-        }
-        else {
-            console.log(firstNum + secondNum);
-        }
+    if (opratorVal === "-") {
+        console.log(firstNum - secondNum);
+    }
+    else if (opratorVal === "+") {
+        console.log(firstNum + secondNum);
+    }
+    else if (opratorVal === "*") {
+        console.log(firstNum * secondNum);
+    }
     else {
-        firstNum = 0;
-        opratorVal;
-        secondNum = 0;
-        console.log("try again");
-        stageCount = 0;
+        console.log(firstNum + secondNum);
     }
     stageCount = 0;
+    secondNum = 0;
+    firstNum = 0;
+    opratorVal = 0;
 };
 // event lisnters
 numberBtns.forEach(function (numberBtn) {
@@ -74,9 +69,9 @@ numberBtns.forEach(function (numberBtn) {
 opretorBtns.forEach(function (opretorBtn) {
     opretorBtn.addEventListener("click", function () {
         opratorVal = opretorBtn.value;
-        startOprating(opratorVal);
+        storeOprator(opratorVal);
     });
 });
 resultBtn.addEventListener("click", function () {
-    showResult(firstNum, opratorVal, secondNum);
+    secondNun();
 });
