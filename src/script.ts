@@ -7,25 +7,33 @@ const resultBtn = document.getElementsByClassName("result-Btn")[0];
 // gelobal varibales
 
 let stageCount = 0;
+let secondNum;
+let firstNum;
+let opratorVal;
 // functions
 
 // get the first number function
 const showData = (valueOfBtn) => {
-  if (showResultBox.textContent === "0") {
-    showResultBox.textContent = valueOfBtn;
-    if (stageCount == 1) {
-      let secondNum = showResultBox.textContent;
-      secondNumFunc(secondNum);
+  if (stageCount === 1) {
+    if (showResultBox.textContent === "0") {
+      showResultBox.textContent = valueOfBtn;
+    } else {
+      showResultBox.textContent += valueOfBtn;
     }
   } else {
-    showResultBox.textContent += valueOfBtn;
+    if (showResultBox.textContent === "0") {
+      showResultBox.textContent = valueOfBtn;
+    } else {
+      showResultBox.textContent += valueOfBtn;
+      secondNum = showResultBox.textContent;
+    }
   }
 };
 
 // start oprating functions
 const startOprating = (opratorVal) => {
   stageCount++;
-  let firstNum = showResultBox.textContent;
+  firstNum = showResultBox.textContent;
   showResultBox.textContent = `${opratorVal}`;
 
   opratorVal = opratorVal;
@@ -33,23 +41,28 @@ const startOprating = (opratorVal) => {
   console.log("this is our first num: ", firstNum);
   console.log("this is our Operator: ", opratorVal);
   console.log("this is stageC :", stageCount);
-};
-
-// second number function
-const secondNumFunc = (secondNum) => {
-  console.log(secondNum);
+  showResultBox.textContent = ``;
 };
 
 const showResult = (firstNum, opratorVal, secondNum) => {
-  if (opratorVal === "-") {
-    console.log(firstNum - secondNum);
-  } else if (opratorVal === "+") {
-    console.log(firstNum + secondNum);
-  } else if (opratorVal === "*") {
-    console.log(firstNum * secondNum);
-  } else {
-    console.log(firstNum + secondNum);
+  if (firstNum && opratorVal && secondNum)
+    if (opratorVal === "-") {
+      console.log(firstNum - secondNum);
+    } else if (opratorVal === "+") {
+      console.log(firstNum + secondNum);
+    } else if (opratorVal === "*") {
+      console.log(firstNum * secondNum);
+    } else {
+      console.log(firstNum + secondNum);
+    }
+  else {
+    firstNum = 0;
+    opratorVal;
+    secondNum = 0;
+    console.log("try again");
+    stageCount = 0;
   }
+  stageCount = 0;
 };
 
 // event lisnters
@@ -62,11 +75,11 @@ numberBtns.forEach((numberBtn) => {
 
 opretorBtns.forEach((opretorBtn) => {
   opretorBtn.addEventListener("click", () => {
-    let opratorVal = opretorBtn.value;
+    opratorVal = opretorBtn.value;
     startOprating(opratorVal);
   });
 });
 
 resultBtn.addEventListener("click", () => {
-  showResult();
+  showResult(firstNum, opratorVal, secondNum);
 });
