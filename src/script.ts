@@ -3,13 +3,14 @@ const numberBtns = document.querySelectorAll(".number-Btn");
 const showResultBox = document.querySelector(".show-Result-Box");
 const opretorBtns = document.querySelectorAll(".opretor-Btn");
 const resultBtn = document.querySelector(".result-Btn");
+const commaBtn = document.getElementsByClassName("comma-Btn")[0];
 
 // global variables
 let stageCount = 0;
 let firstNum;
 let opratorVal;
 let secondNum;
-
+let valueOfBtn;
 // functions
 
 // get the first number function
@@ -74,7 +75,7 @@ const showResult = (firstNum, opratorVal, secondNum) => {
 // event listeners
 numberBtns.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
-    let valueOfBtn = numberBtn.value;
+    valueOfBtn = numberBtn.value;
     showData(valueOfBtn);
   });
 });
@@ -88,4 +89,29 @@ opretorBtns.forEach((opretorBtn) => {
 
 resultBtn.addEventListener("click", () => {
   storeSecondNumber();
+});
+
+commaBtn.addEventListener("click", () => {
+  if (stageCount === 0) {
+    // fixed: Added braces to clarify the if condition
+    if (showResultBox.textContent === "0") {
+      if (!showResultBox.textContent.includes(".")) {
+        showResultBox.textContent += valueOfBtn + `.`;
+        firstNum = parseFloat(showResultBox.textContent);
+      } else {
+        showResultBox.textContent = valueOfBtn;
+        firstNum = parseFloat(showResultBox.textContent);
+      }
+    }
+  } else {
+    if (showResultBox.textContent === "0") {
+      if (!showResultBox.textContent.includes(".")) {
+        showResultBox.textContent += valueOfBtn + `.`;
+        secondNum = parseFloat(showResultBox.textContent);
+      } else {
+        showResultBox.textContent = valueOfBtn;
+        secondNum = parseFloat(showResultBox.textContent);
+      }
+    }
+  }
 });

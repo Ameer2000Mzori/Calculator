@@ -3,11 +3,13 @@ var numberBtns = document.querySelectorAll(".number-Btn");
 var showResultBox = document.querySelector(".show-Result-Box");
 var opretorBtns = document.querySelectorAll(".opretor-Btn");
 var resultBtn = document.querySelector(".result-Btn");
+var commaBtn = document.getElementsByClassName("comma-Btn")[0];
 // global variables
 var stageCount = 0;
 var firstNum;
 var opratorVal;
 var secondNum;
+var valueOfBtn;
 // functions
 // get the first number function
 var showData = function (valueOfBtn) {
@@ -73,7 +75,7 @@ var showResult = function (firstNum, opratorVal, secondNum) {
 // event listeners
 numberBtns.forEach(function (numberBtn) {
     numberBtn.addEventListener("click", function () {
-        var valueOfBtn = numberBtn.value;
+        valueOfBtn = numberBtn.value;
         showData(valueOfBtn);
     });
 });
@@ -85,4 +87,31 @@ opretorBtns.forEach(function (opretorBtn) {
 });
 resultBtn.addEventListener("click", function () {
     storeSecondNumber();
+});
+commaBtn.addEventListener("click", function () {
+    if (stageCount === 0) {
+        // fixed: Added braces to clarify the if condition
+        if (showResultBox.textContent === "0") {
+            if (!showResultBox.textContent.includes(".")) {
+                showResultBox.textContent += valueOfBtn + ".";
+                firstNum = parseFloat(showResultBox.textContent);
+            }
+            else {
+                showResultBox.textContent = valueOfBtn;
+                firstNum = parseFloat(showResultBox.textContent);
+            }
+        }
+    }
+    else {
+        if (showResultBox.textContent === "0") {
+            if (!showResultBox.textContent.includes(".")) {
+                showResultBox.textContent += valueOfBtn + ".";
+                secondNum = parseFloat(showResultBox.textContent);
+            }
+            else {
+                showResultBox.textContent = valueOfBtn;
+                secondNum = parseFloat(showResultBox.textContent);
+            }
+        }
+    }
 });
