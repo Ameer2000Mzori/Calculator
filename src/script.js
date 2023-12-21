@@ -90,28 +90,15 @@ resultBtn.addEventListener("click", function () {
 });
 commaBtn.addEventListener("click", function () {
     if (stageCount === 0) {
-        // fixed: Added braces to clarify the if condition
-        if (showResultBox.textContent === "0") {
-            if (!showResultBox.textContent.includes(".")) {
-                showResultBox.textContent += valueOfBtn + ".";
-                firstNum = parseFloat(showResultBox.textContent);
-            }
-            else {
-                showResultBox.textContent = valueOfBtn;
-                firstNum = parseFloat(showResultBox.textContent);
-            }
+        if (!showResultBox.textContent.includes(".")) {
+            showResultBox.textContent += ".";
+            firstNum = parseFloat(showResultBox.textContent);
         }
     }
     else {
-        if (showResultBox.textContent === "0") {
-            if (!showResultBox.textContent.includes(".")) {
-                showResultBox.textContent += valueOfBtn + ".";
-                secondNum = parseFloat(showResultBox.textContent);
-            }
-            else {
-                showResultBox.textContent = valueOfBtn;
-                secondNum = parseFloat(showResultBox.textContent);
-            }
+        if (!showResultBox.textContent.includes(".")) {
+            showResultBox.textContent += ".";
+            secondNum = parseFloat(showResultBox.textContent);
         }
     }
 });
