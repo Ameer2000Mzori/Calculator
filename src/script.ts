@@ -4,6 +4,7 @@ const showResultBox = document.querySelector(".show-Result-Box");
 const opretorBtns = document.querySelectorAll(".opretor-Btn");
 const resultBtn = document.querySelector(".result-Btn");
 const commaBtn = document.getElementsByClassName("comma-Btn")[0];
+const clearBtn = document.getElementsByClassName("clear-Btn")[0];
 
 // global variables
 let stageCount = 0;
@@ -63,6 +64,7 @@ const showResult = (firstNum, opratorVal, secondNum) => {
     showResultBox.textContent = firstNum / secondNum;
   } else {
     console.log("Error: Invalid operator or division by zero");
+    clearCalculator();
   }
 
   // reset variables
@@ -72,26 +74,9 @@ const showResult = (firstNum, opratorVal, secondNum) => {
   opratorVal = null; // fixed: Set opratorVal to null for better reset
 };
 
-// event listeners
-numberBtns.forEach((numberBtn) => {
-  numberBtn.addEventListener("click", () => {
-    valueOfBtn = numberBtn.value;
-    showData(valueOfBtn);
-  });
-});
+// this is add coma to nums if num does not contain comma
 
-opretorBtns.forEach((opretorBtn) => {
-  opretorBtn.addEventListener("click", () => {
-    opratorVal = opretorBtn.value;
-    storeOperator(opratorVal);
-  });
-});
-
-resultBtn.addEventListener("click", () => {
-  storeSecondNumber();
-});
-
-commaBtn.addEventListener("click", () => {
+const addComaToNums = () => {
   if (stageCount === 0) {
     if (!showResultBox.textContent.includes(".")) {
       showResultBox.textContent += `.`;
@@ -103,4 +88,40 @@ commaBtn.addEventListener("click", () => {
       secondNum = parseFloat(showResultBox.textContent);
     }
   }
+};
+
+// clear calculator this fires when error apears or C buttons clicked
+const clearCalculator = () => {
+  stageCount = 0;
+  secondNum = 0;
+  firstNum = 0;
+  opratorVal = null;
+  showResultBox.textContent = "0";
+};
+
+// event listeners
+
+// numbers clicks
+numberBtns.forEach((numberBtn) => {
+  numberBtn.addEventListener("click", () => {
+    valueOfBtn = numberBtn.value;
+    showData(valueOfBtn);
+  });
 });
+
+// oprators clicks
+opretorBtns.forEach((opretorBtn) => {
+  opretorBtn.addEventListener("click", () => {
+    opratorVal = opretorBtn.value;
+    storeOperator(opratorVal);
+  });
+});
+
+// store second num event
+resultBtn.addEventListener("click", storeSecondNumber);
+
+// add comma event
+commaBtn.addEventListener("click", addComaToNums);
+
+// clear calculator event
+clearBtn.addEventListener("click", clearCalculator);

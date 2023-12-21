@@ -4,6 +4,7 @@ var showResultBox = document.querySelector(".show-Result-Box");
 var opretorBtns = document.querySelectorAll(".opretor-Btn");
 var resultBtn = document.querySelector(".result-Btn");
 var commaBtn = document.getElementsByClassName("comma-Btn")[0];
+var clearBtn = document.getElementsByClassName("clear-Btn")[0];
 // global variables
 var stageCount = 0;
 var firstNum;
@@ -65,6 +66,7 @@ var showResult = function (firstNum, opratorVal, secondNum) {
     }
     else {
         console.log("Error: Invalid operator or division by zero");
+        clearCalculator();
     }
     // reset variables
     stageCount = 0;
@@ -72,23 +74,8 @@ var showResult = function (firstNum, opratorVal, secondNum) {
     firstNum = 0;
     opratorVal = null; // fixed: Set opratorVal to null for better reset
 };
-// event listeners
-numberBtns.forEach(function (numberBtn) {
-    numberBtn.addEventListener("click", function () {
-        valueOfBtn = numberBtn.value;
-        showData(valueOfBtn);
-    });
-});
-opretorBtns.forEach(function (opretorBtn) {
-    opretorBtn.addEventListener("click", function () {
-        opratorVal = opretorBtn.value;
-        storeOperator(opratorVal);
-    });
-});
-resultBtn.addEventListener("click", function () {
-    storeSecondNumber();
-});
-commaBtn.addEventListener("click", function () {
+// this is add coma to nums if num does not contain comma
+var addComaToNums = function () {
     if (stageCount === 0) {
         if (!showResultBox.textContent.includes(".")) {
             showResultBox.textContent += ".";
@@ -101,4 +88,33 @@ commaBtn.addEventListener("click", function () {
             secondNum = parseFloat(showResultBox.textContent);
         }
     }
+};
+// clear calculator this fires when error apears or C buttons clicked
+var clearCalculator = function () {
+    stageCount = 0;
+    secondNum = 0;
+    firstNum = 0;
+    opratorVal = null;
+    showResultBox.textContent = "0";
+};
+// event listeners
+// numbers clicks
+numberBtns.forEach(function (numberBtn) {
+    numberBtn.addEventListener("click", function () {
+        valueOfBtn = numberBtn.value;
+        showData(valueOfBtn);
+    });
 });
+// oprators clicks
+opretorBtns.forEach(function (opretorBtn) {
+    opretorBtn.addEventListener("click", function () {
+        opratorVal = opretorBtn.value;
+        storeOperator(opratorVal);
+    });
+});
+// store second num event
+resultBtn.addEventListener("click", storeSecondNumber);
+// add comma event
+commaBtn.addEventListener("click", addComaToNums);
+// clear calculator event
+clearBtn.addEventListener("click", clearCalculator);
