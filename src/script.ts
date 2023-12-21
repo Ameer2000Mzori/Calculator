@@ -1,26 +1,27 @@
 // selecting elements
 const numberBtns = document.querySelectorAll(".number-Btn");
-const showResultBox = document.getElementsByClassName("show-Result-Box")[0];
+const showResultBox = document.querySelector(".show-Result-Box");
 const opretorBtns = document.querySelectorAll(".opretor-Btn");
-const resultBtn = document.getElementsByClassName("result-Btn")[0];
+const resultBtn = document.querySelector(".result-Btn");
 
-// gelobal varibales
-
+// global variables
 let stageCount = 0;
-let secondNum;
 let firstNum;
 let opratorVal;
+let secondNum;
+
 // functions
 
 // get the first number function
 const showData = (valueOfBtn) => {
-  if (stageCount === 0)
+  if (stageCount === 0) {
+    // fixed: Added braces to clarify the if condition
     if (showResultBox.textContent === "0") {
       showResultBox.textContent = valueOfBtn;
     } else {
       showResultBox.textContent += valueOfBtn;
     }
-  else {
+  } else {
     if (showResultBox.textContent === "0") {
       showResultBox.textContent = valueOfBtn;
     } else {
@@ -29,39 +30,48 @@ const showData = (valueOfBtn) => {
   }
 };
 
-// start oprating functions
-const storeOprator = (opratorVal) => {
-  firstNum = showResultBox.textContent;
-  opratorVal = opratorVal;
+// store operator function
+const storeOperator = (operatorVal) => {
+  firstNum = parseFloat(showResultBox.textContent);
+  opratorVal = operatorVal;
   console.log(firstNum, opratorVal);
-  showResultBox.textContent = `0`;
+  showResultBox.textContent = "0";
   stageCount++;
 };
 
-// start second number store functions
-const secondNun = () => {
-  secondNum = showResultBox.textContent;
+// store second number function
+const storeSecondNumber = () => {
+  secondNum = parseFloat(showResultBox.textContent);
   console.log(firstNum, opratorVal, secondNum);
   showResult(firstNum, opratorVal, secondNum);
 };
 
+// show result function
 const showResult = (firstNum, opratorVal, secondNum) => {
   if (opratorVal === "-") {
     console.log(firstNum - secondNum);
+    showResultBox.textContent = firstNum - secondNum;
   } else if (opratorVal === "+") {
     console.log(firstNum + secondNum);
+    showResultBox.textContent = firstNum + secondNum;
   } else if (opratorVal === "*") {
     console.log(firstNum * secondNum);
+    showResultBox.textContent = firstNum * secondNum;
+  } else if (opratorVal === "/" && secondNum !== 0) {
+    console.log(firstNum / secondNum);
+    showResultBox.textContent = firstNum / secondNum;
   } else {
-    console.log(firstNum + secondNum);
+    console.log("Error: Invalid operator or division by zero");
   }
+
+  // reset variables
   stageCount = 0;
   secondNum = 0;
   firstNum = 0;
-  opratorVal = 0;
+  opratorVal = null; // fixed: Set opratorVal to null for better reset
 };
 
-// event lisnters
+// event listeners
 numberBtns.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
     let valueOfBtn = numberBtn.value;
@@ -72,10 +82,10 @@ numberBtns.forEach((numberBtn) => {
 opretorBtns.forEach((opretorBtn) => {
   opretorBtn.addEventListener("click", () => {
     opratorVal = opretorBtn.value;
-    storeOprator(opratorVal);
+    storeOperator(opratorVal);
   });
 });
 
 resultBtn.addEventListener("click", () => {
-  secondNun();
+  storeSecondNumber();
 });
