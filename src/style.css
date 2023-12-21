@@ -2,6 +2,8 @@
 
 body {
   padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
   margin: 0;
 }
 
@@ -19,6 +21,11 @@ body {
   flex-direction: column;
   width: 400px;
   height: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 5px;
+  border: solid rgb(165, 156, 156) 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .main .calculator-Wrap .result-Wrap {
@@ -35,7 +42,11 @@ body {
 }
 
 .main .calculator-Wrap .result-Wrap .result-wrapper {
-  width: 25%;
+  text-align: end;
+  width: 90%;
+  padding-right: 15px;
+  overflow-y: hidden;
+  overflow-x: auto;
   height: 100%;
 }
 
@@ -58,8 +69,9 @@ body {
   text-align: center;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #200e3a;
+  background-color: #d6d6d6;
   border-radius: 1rem;
+  border: solid rgb(150, 147, 147) 3px;
 }
 
 .main .calculator-Wrap .buttons-Wrap .buttons-Groups button {
@@ -70,23 +82,35 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 252, 252);
-  border: solid rgb(192, 191, 191) 2px;
   transition: 100ms ease-in-out;
   border-radius: 50%;
   margin: 5px;
+  background-color: #3498db;
+  color: #fff;
 }
 
 .main .calculator-Wrap .buttons-Wrap .buttons-Groups button:active {
   transform: scale(0.9);
 }
 
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups .opretor-Btn {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.main .calculator-Wrap .buttons-Wrap .buttons-Groups .comma-Btn {
+  background-color: #f39c12;
+  color: #fff;
+}
+
 .main .calculator-Wrap .buttons-Wrap .buttons-Groups .result-Btn {
-  background-color: rgb(123, 255, 123);
+  background-color: #16a085;
+  color: #fff;
 }
 
 .main .calculator-Wrap .buttons-Wrap .buttons-Groups .clear-Btn {
-  background-color: rgb(252, 95, 95);
+  background-color: #95a5a6;
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
