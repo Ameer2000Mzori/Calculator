@@ -34,7 +34,11 @@ var showData = function (valueOfBtn) {
 };
 // store operator function
 var storeOperator = function (operatorVal) {
-    firstNum = parseFloat(showResultBox.textContent);
+    var storedVal = parseFloat(showResultBox.textContent);
+    opretorBtns.forEach(function (operatorBtns) {
+        operatorBtns.disabled = true;
+    });
+    firstNum = storedVal;
     opratorVal = operatorVal;
     console.log(firstNum, opratorVal);
     showResultBox.textContent = "0";
@@ -48,6 +52,9 @@ var storeSecondNumber = function () {
 };
 // show result function
 var showResult = function (firstNum, opratorVal, secondNum) {
+    opretorBtns.forEach(function (operatorBtns) {
+        operatorBtns.disabled = false;
+    });
     if (opratorVal === "-") {
         console.log(firstNum - secondNum);
         showResultBox.textContent = firstNum - secondNum;
@@ -96,6 +103,9 @@ var clearCalculator = function () {
     firstNum = 0;
     opratorVal = null;
     showResultBox.textContent = "0";
+    opretorBtns.forEach(function (operatorBtns) {
+        operatorBtns.disabled = false;
+    });
 };
 // event listeners
 // numbers clicks

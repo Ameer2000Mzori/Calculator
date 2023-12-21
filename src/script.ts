@@ -34,7 +34,11 @@ const showData = (valueOfBtn) => {
 
 // store operator function
 const storeOperator = (operatorVal) => {
-  firstNum = parseFloat(showResultBox.textContent);
+  const storedVal = parseFloat(showResultBox.textContent);
+  opretorBtns.forEach((operatorBtns) => {
+    operatorBtns.disabled = true;
+  });
+  firstNum = storedVal;
   opratorVal = operatorVal;
   console.log(firstNum, opratorVal);
   showResultBox.textContent = "0";
@@ -50,6 +54,9 @@ const storeSecondNumber = () => {
 
 // show result function
 const showResult = (firstNum, opratorVal, secondNum) => {
+  opretorBtns.forEach((operatorBtns) => {
+    operatorBtns.disabled = false;
+  });
   if (opratorVal === "-") {
     console.log(firstNum - secondNum);
     showResultBox.textContent = firstNum - secondNum;
@@ -97,6 +104,9 @@ const clearCalculator = () => {
   firstNum = 0;
   opratorVal = null;
   showResultBox.textContent = "0";
+  opretorBtns.forEach((operatorBtns) => {
+    operatorBtns.disabled = false;
+  });
 };
 
 // event listeners
