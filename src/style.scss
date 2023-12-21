@@ -89,4 +89,11 @@ body {
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .calculator-Wrap {
+      width: 350px;
+      height: 500px;
+    }
+  }
 }

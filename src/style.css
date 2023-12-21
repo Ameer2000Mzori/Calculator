@@ -88,3 +88,10 @@ body {
 .main .calculator-Wrap .buttons-Wrap .buttons-Groups .clear-Btn {
   background-color: rgb(252, 95, 95);
 }
+
+@media screen and (max-width: 768px) {
+  .main .calculator-Wrap {
+    width: 350px;
+    height: 500px;
+  }
+}
